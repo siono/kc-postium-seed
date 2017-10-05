@@ -11,7 +11,7 @@ export class PostPreviewComponent {
 
   @Input() post: Post;
   @Output() detallePostSeleccionado = new EventEmitter<Post>();
-
+  @Output() postsAutor = new EventEmitter<string>()
   /*=========================================================================|
   | Red Path                                                                 |
   |==========================================================================|
@@ -33,6 +33,11 @@ export class PostPreviewComponent {
   | dicho clic se realiza en el template de este componente, necesitas,      |
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
+
+  notificarPostsAutor(idAutor:string){
+    console.log("IdAutor",idAutor);
+    this.postsAutor.emit(idAutor);
+  }
 
   plainTextToHtml(text: string): string {
     return text ? `<p>${text.replace(/\n/gi, '</p><p>')}</p>` : '';

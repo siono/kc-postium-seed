@@ -13,4 +13,4 @@
 | en él para notificar los clics sobre los posts.                          |
 |========================================================================-->
 
-<app-post-preview *ngFor="let post of posts" [post]="post" (detallePostSeleccionado)="verDetallePost($event)"></app-post-preview>
+<app-post-preview *ngFor="let post of posts" [post]="post" (detallePostSeleccionado)="verDetallePost($event)" (postsAutor)="verPostsAutor($event)"></app-post-preview>
