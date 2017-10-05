@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Post } from '../post';
@@ -8,6 +10,8 @@ import { Post } from '../post';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostsListComponent {
+
+  constructor(private _router: Router){}
 
   @Input() posts: Post[];
 
@@ -30,5 +34,7 @@ export class PostsListComponent {
   | app. La ruta a navegar es '/posts', pasando como parámetro el            |
   | identificador del post.                                                  |
   |=========================================================================*/
-
+  verDetallePost(post: Post){
+    this._router.navigate(['/posts',post.id]);
+  }
 }

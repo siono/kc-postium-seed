@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Post } from '../post';
 
@@ -10,6 +10,7 @@ import { Post } from '../post';
 export class PostPreviewComponent {
 
   @Input() post: Post;
+  @Output() detallePostSeleccionado = new EventEmitter<Post>();
 
   /*=========================================================================|
   | Red Path                                                                 |
@@ -20,7 +21,9 @@ export class PostPreviewComponent {
   | dicho clic se realiza en el template de este componente, necesitas,      |
   | además, un manejador para el mismo.                                      |
   |=========================================================================*/
-
+  notificarDetallePost(post: Post){
+    this.detallePostSeleccionado.emit(post);
+  }
   /*=========================================================================|
   | Green Path                                                               |
   |==========================================================================|
