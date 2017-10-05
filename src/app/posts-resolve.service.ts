@@ -35,6 +35,11 @@ export class PostsResolveService implements Resolve<Post[]> {
     | ver qué encuentras.                                                      |
     |=========================================================================*/
 
+    if(route.params.categoryId){
+      console.log('GetCategoryPost');
+      return this._postService.getCategoryPosts(route.params.categoryId);
+    }
+
     return this._postService.getPosts();
   }
 

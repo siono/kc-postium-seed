@@ -103,8 +103,16 @@ export class PostService {
     |                                                                          |
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
+     console.log("TODO: Devolver todos los post por categoria");
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`);
+     const options = {
+      params: new HttpParams()
+        .set('publicationDate_lte', Date.now().toString())
+        .set('_sort','publicationDate')
+        .set('_order','DESC')
+    };
+
+     return this._http.get<Post[]>(`${environment.backendUri}/posts`,options);
   }
 
   getPostDetails(id: number): Observable<Post> {

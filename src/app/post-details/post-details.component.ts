@@ -52,5 +52,8 @@ export class PostDetailsComponent implements OnInit {
   | '/posts/categories', pasando como parámetro el identificador de la       |
   | categoría.                                                               |
   |=========================================================================*/
+  navegarPostsCategoria(idCategoria:string){
+    this._router.navigate(['/posts/categories',idCategoria]);
+  }
 
 }
