@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 
 import { environment } from '../environments/environment';
 import { Post } from './post';
+import { Category } from './category';
 
 @Injectable()
 export class PostService {
@@ -103,16 +104,22 @@ export class PostService {
     |                                                                          |
     | Una pista más, por si acaso: HttpParams.                                 |
     |=========================================================================*/
-     console.log("TODO: Devolver todos los post por categoria");
-
-     const options = {
+  
+    const options = {
       params: new HttpParams()
         .set('publicationDate_lte', Date.now().toString())
         .set('_sort','publicationDate')
         .set('_order','DESC')
     };
 
-     return this._http.get<Post[]>(`${environment.backendUri}/posts`,options);
+    function existCategoryId(post:Post):boolean{
+      let idCategory:number = post.categories.findIndex((category: Category):boolean=>{return category.id.toString() === id.toString() })
+      return idCategory >=0;
+    }
+
+    return this._http.get<Post[]>(`${environment.backendUri}/posts`,options).map((posts:Post[])=>{
+      return posts.filter(existCategoryId);
+     });
   }
 
   getPostDetails(id: number): Observable<Post> {
