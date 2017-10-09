@@ -22,7 +22,6 @@ export class PostsResolveService implements Resolve<Post[]> {
     | qué encuentras.                                                          |
     |=========================================================================*/
     if (route.params.userId){
-      console.log('GetUserPosts');
       return this._postService.getUserPosts(route.params.userId);
     }
     
@@ -36,7 +35,6 @@ export class PostsResolveService implements Resolve<Post[]> {
     |=========================================================================*/
 
     if(route.params.categoryId){
-      console.log('GetCategoryPost');
       return this._postService.getCategoryPosts(route.params.categoryId);
     }
 
