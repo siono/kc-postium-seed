@@ -30,7 +30,6 @@ export class EditStoryComponent implements OnInit {
   }
 
   editPost(post: Post): void {
-  
     this._unsubscribePostCreation();
     this._postSubscription = this._postService
                                  .updatePost(post)

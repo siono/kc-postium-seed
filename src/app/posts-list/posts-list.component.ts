@@ -25,7 +25,6 @@ export class PostsListComponent {
   | parámetro el identificador del autor.                                    |
   |=========================================================================*/
   verPostsAutor(idAutor: string){
-    console.log('Navegando a los post de autor...');
     this._router.navigate(['/posts/users',idAutor]);
   }
 

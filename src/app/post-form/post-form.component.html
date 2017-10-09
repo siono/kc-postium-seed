@@ -5,6 +5,8 @@
 |========================================================================-->
 <form [formGroup]="postForm" novalidate (ngSubmit)="emitPostSubmitted()">
 
+  <input type="text" placeholder="URL imagen" formControlName="media">
+
   <!--=======================================================================|
   | Purple Path                                                              |
   |==========================================================================|

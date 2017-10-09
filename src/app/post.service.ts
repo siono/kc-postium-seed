@@ -148,7 +148,8 @@ export class PostService {
     let body = {
       title: post.title,
       intro: post.intro,
-      body: post.body
+      body: post.body,
+      media: post.media
     }
     return this._http.patch<Post>(`${environment.backendUri}/posts/${idPost}`,body);
   }

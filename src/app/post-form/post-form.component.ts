@@ -36,7 +36,8 @@ export class PostFormComponent implements OnChanges{
     this.postForm = this._formBuilder.group({
       title: ['',Validators.required],
       intro: ['',Validators.required],
-      body: ['']
+      body: [''],
+      media: ['']
     });
   }
 
@@ -44,22 +45,26 @@ export class PostFormComponent implements OnChanges{
 
   emitPostSubmitted(): void {
     const postFormulario: Post = this.postForm.value;
-    postFormulario.likes = this.post.likes ? this.post.likes : [];
-    postFormulario.categories = this.post.categories ? this.post.categories : [];
-    postFormulario.author = this.post.author ? this.post.author : this._userService.getDefaultUser();
-    postFormulario.publicationDate = this.post.publicationDate ? this.post.publicationDate : Date.now();
-    if(this.post.id) {postFormulario.id = this.post.id};
-    console.log('PostFormulario', postFormulario);
+    postFormulario.likes = (this.post === undefined) ? [] : this.post.likes ;
+    postFormulario.categories = (this.post === undefined) ? [] : this.post.categories ;
+    postFormulario.author = (this.post === undefined) ? this._userService.getDefaultUser() : this.post.author ;
+    postFormulario.publicationDate = (this.post === undefined) ? Date.now() : this.post.publicationDate ;
+    
+    if (typeof this.post !== 'undefined'){
+      postFormulario.id = this.post.id
+    };
+
     this.postSubmitted.emit(postFormulario);
   }
 
-
+  
     public ngOnChanges(): void {
       this.postForm.reset();
       this.postForm.setValue({
         title: this.post.title || '',
         intro: this.post.intro || '',
-        body: this.post.body || ''
+        body: this.post.body || '',
+        media: this.post.media || ''
       }
       )
     }

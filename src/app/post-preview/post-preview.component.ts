@@ -35,7 +35,6 @@ export class PostPreviewComponent {
   |=========================================================================*/
 
   notificarPostsAutor(idAutor:string){
-    console.log("IdAutor",idAutor);
     this.postsAutor.emit(idAutor);
   }
 
