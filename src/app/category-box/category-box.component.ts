@@ -23,7 +23,6 @@ export class CategoryBoxComponent {
   |=========================================================================*/
 
   verPostCategorias(idCategoria:string){
-    console.log("notificando el idCategoria", idCategoria);
     this.seleccionIdCategoria.emit(idCategoria);
   }
 }
