@@ -34,6 +34,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
 import { UserService } from './user.service';
 import { FromNowPipe } from './from-now.pipe';
 import { EditStoryComponent } from './edit-story/edit-story.component';
+import { LikesComponent } from './likes/likes.component';
 
 @NgModule({
   imports: [
@@ -65,7 +66,8 @@ import { EditStoryComponent } from './edit-story/edit-story.component';
     PostsViewComponent,
     SearchBoxComponent,
     FromNowPipe,
-    EditStoryComponent
+    EditStoryComponent,
+    LikesComponent
   ],
   providers: [
     CategoryResolveService,

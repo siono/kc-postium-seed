@@ -5,8 +5,6 @@
 |========================================================================-->
 <form [formGroup]="postForm" novalidate (ngSubmit)="emitPostSubmitted()">
 
-  <input type="text" placeholder="URL imagen" formControlName="media">
-
   <!--=======================================================================|
   | Purple Path                                                              |
   |==========================================================================|
@@ -16,6 +14,11 @@
     type="text"
     placeholder="Título"
     class="u-full-width" formControlName="title">
+
+  <!--- imagen del post -->
+
+  <div>URL Imagen: <input type="text" class="url-image" placeholder="URL imagen" formControlName="media"></div>
+  <img *ngIf="post.media" [src]="post.media" class="u-max-full-width">
 
   <!--=======================================================================|
   | Purple Path                                                              |
