@@ -56,4 +56,8 @@ export class PostDetailsComponent implements OnInit {
     this._router.navigate(['/posts/categories',idCategoria]);
   }
 
+  navegarEditarPost(postId:string){
+    this._router.navigate(['/edit-story',postId]);
+  }
+
 }

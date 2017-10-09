@@ -83,3 +83,8 @@
   color: rgba(0, 0, 0, .4);
   font-size: .9em;
 }
+
+button.edit{
+  background-color: #00ab6b;
+  color: #fff;
+}

@@ -38,4 +38,5 @@
   |========================================================================-->
   <app-category-box [categories]="post.categories" (seleccionIdCategoria)="navegarPostsCategoria($event)"></app-category-box>
 
+  <button class="edit" (click)="navegarEditarPost(post.id)">Editar Post</button>
 </div>

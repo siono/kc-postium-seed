@@ -1,3 +1,4 @@
+import { EditStoryComponent } from './edit-story/edit-story.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -34,6 +35,12 @@ import { PostsViewComponent } from './posts-view/posts-view.component';
     }, {
       path: 'new-story',
       component: NewStoryComponent
+    },{
+      path: 'edit-story/:postId',
+      component: EditStoryComponent,
+      resolve:{
+        post: PostDetailsResolveService
+      }
     }, {
       path: 'posts/:postId',
       component: PostDetailsComponent,

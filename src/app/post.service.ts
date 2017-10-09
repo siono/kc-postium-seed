@@ -141,4 +141,16 @@ export class PostService {
     return this._http.post<Post>(`${environment.backendUri}/posts`,post);
   }
 
+  updatePost(post:Post): Observable<Post>{
+
+    let idPost:string = String(post.id);
+
+    let body = {
+      title: post.title,
+      intro: post.intro,
+      body: post.body
+    }
+    return this._http.patch<Post>(`${environment.backendUri}/posts/${idPost}`,body);
+  }
+
 }

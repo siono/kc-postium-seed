@@ -35,6 +35,7 @@
     class="u-full-width georgia-font"
     autogrow formControlName="body"></textarea>
 
+
   <!--=======================================================================|
   | Purple Path                                                              |
   |==========================================================================|
@@ -42,6 +43,7 @@
   |========================================================================-->
   <button
     type="submit"
-    class="button-primary u-pull-right" [disabled]="postForm.invalid">Publicar</button>
+    class="button-primary u-pull-right" [disabled]="postForm.pristine">Publicar</button>
 
 </form>
+{{post|json}}

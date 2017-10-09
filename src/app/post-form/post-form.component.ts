@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Post } from '../post';
@@ -10,9 +10,10 @@ import { UserService } from '../user.service';
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.css']
 })
-export class PostFormComponent {
+export class PostFormComponent implements OnChanges{
 
   postForm: FormGroup;
+  @Input() post:Post;
 
   @Output() postSubmitted: EventEmitter<Post> = new EventEmitter();
 
@@ -39,13 +40,27 @@ export class PostFormComponent {
     });
   }
 
+  
+
   emitPostSubmitted(): void {
-    const post: Post = this.postForm.value;
-    post.likes = [];
-    post.categories = [];
-    post.author = this._userService.getDefaultUser();
-    post.publicationDate = Date.now();
-    this.postSubmitted.emit(post);
+    const postFormulario: Post = this.postForm.value;
+    postFormulario.likes = this.post.likes ? this.post.likes : [];
+    postFormulario.categories = this.post.categories ? this.post.categories : [];
+    postFormulario.author = this.post.author ? this.post.author : this._userService.getDefaultUser();
+    postFormulario.publicationDate = this.post.publicationDate ? this.post.publicationDate : Date.now();
+    if(this.post.id) {postFormulario.id = this.post.id};
+    console.log('PostFormulario', postFormulario);
+    this.postSubmitted.emit(postFormulario);
   }
 
+
+    public ngOnChanges(): void {
+      this.postForm.reset();
+      this.postForm.setValue({
+        title: this.post.title || '',
+        intro: this.post.intro || '',
+        body: this.post.body || ''
+      }
+      )
+    }
 }
