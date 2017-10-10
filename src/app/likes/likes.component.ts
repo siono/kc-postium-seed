@@ -1,5 +1,7 @@
+import { User } from '../user';
 import { Post } from '../post';
 import { Component, Input, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-likes',
@@ -13,14 +15,17 @@ export class LikesComponent implements OnInit {
   likes:number[];
   userId: number;
 
-  constructor() { }
+  constructor(private _userService: UserService) { }
 
   ngOnInit() {
     this.likes = this.post.likes;
   }
 
-  addFavorite(idUser:number){
+  addFavorite(){
 
+    //Dummy: siempre devuelve el id del usuario por defecto.Get user debería implementar usuario sesión.
+    let idUser:number = this._userService.getUser().id;
+    
     let likes:number[] = this.post.likes;
     if (!likes.find((element:number)=>{return element==idUser })){
       console.log("Añadiendo Like al POST...");
