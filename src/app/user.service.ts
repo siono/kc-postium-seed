@@ -17,4 +17,8 @@ export class UserService {
     return { ...this.DEFAULT_USER };
   }
 
+  getUser():User{
+    return { ...this.DEFAULT_USER };
+  }
+
 }
