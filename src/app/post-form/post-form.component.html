@@ -18,7 +18,7 @@
   <!--- imagen del post -->
 
   <div>URL Imagen: <input type="text" class="url-image" placeholder="URL imagen" formControlName="media"></div>
-  <img *ngIf="post.media" [src]="post.media" class="u-max-full-width">
+  <img *ngIf="post" [src]="post.media" class="u-max-full-width">
 
   <!--=======================================================================|
   | Purple Path                                                              |
@@ -48,6 +48,6 @@
   |========================================================================-->
   <button
     type="submit"
-    class="button-primary u-pull-right" [disabled]="postForm.pristine">Publicar</button>
+    class="button-primary u-pull-right" [disabled]="postForm.invalid">Publicar</button>
 
 </form>

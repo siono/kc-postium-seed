@@ -53,7 +53,7 @@ export class PostFormComponent implements OnChanges{
     if (typeof this.post !== 'undefined'){
       postFormulario.id = this.post.id
     };
-
+  
     this.postSubmitted.emit(postFormulario);
   }
 
