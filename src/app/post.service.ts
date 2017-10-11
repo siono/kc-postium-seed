@@ -142,22 +142,26 @@ export class PostService {
   }
 
   updatePost(post:Post): Observable<Post>{
-
-    let idPost:string = String(post.id);
-
+    
     let body = {
       title: post.title,
       intro: post.intro,
       body: post.body,
       media: post.media
     }
-    return this._http.patch<Post>(`${environment.backendUri}/posts/${idPost}`,body);
+    return this._http.patch<Post>(`${environment.backendUri}/posts/${post.id}`,body);
   }
 
   addLikePost(post:Post,idUser:number): Observable<Post>{
-    let idPost:string = String(post.id);
-    let likes = post.likes.push(idUser);
-    return this._http.patch<Post>(`${environment.backendUri}/posts/${idPost}`,likes);
+    
+    let likesModify:number[] = post.likes;
+    likesModify.push(idUser);
+
+    let body = {
+      likes: likesModify
+    }
+    
+    return this._http.patch<Post>(`${environment.backendUri}/posts/${post.id}`,body);
   }
 
 }
