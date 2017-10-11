@@ -154,4 +154,10 @@ export class PostService {
     return this._http.patch<Post>(`${environment.backendUri}/posts/${idPost}`,body);
   }
 
+  addLikePost(post:Post,idUser:number): Observable<Post>{
+    let idPost:string = String(post.id);
+    let likes = post.likes.push(idUser);
+    return this._http.patch<Post>(`${environment.backendUri}/posts/${idPost}`,likes);
+  }
+
 }
