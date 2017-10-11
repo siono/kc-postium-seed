@@ -5,4 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './header-bar.component.html',
   styleUrls: ['./header-bar.component.css']
 })
-export class HeaderBarComponent { }
+export class HeaderBarComponent { 
+
+  verPostsBusqueda(busqueda: String){
+    console.log("Busqueda...",busqueda);
+  }
+}
