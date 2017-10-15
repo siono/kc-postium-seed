@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { PostService } from '../post.service';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-likes',
@@ -16,12 +16,16 @@ export class LikesComponent implements OnInit {
   @Input() post: Post;
   
   private _postSubscription: Subscription;
-  likes:number[];
 
-  constructor(private _userService: UserService,private _postService: PostService,private _router: Router) { }
+  constructor(private _activatedRoute: ActivatedRoute,private _userService: UserService,private _postService: PostService,private _router: Router) { }
 
   ngOnInit() {
-    this.likes = this.post.likes;
+    this._activatedRoute
+    .data
+    .subscribe((data: {post: Post})=>{
+      this.post = data.post;
+    });
+    
   }
 
   addFavorite(){
@@ -29,7 +33,7 @@ export class LikesComponent implements OnInit {
     let idUser:number = this._userService.getUser().id;
     
     //si el usuario no ha dado like al post anteriormente
-    if (!this.likes.find((element:number)=>{return element==idUser })){
+    if (!this.post.likes.find((element:number)=>{return element==idUser })){
     
       this._unsubscribeUpdateFavorite();
       this._postSubscription= this._postService

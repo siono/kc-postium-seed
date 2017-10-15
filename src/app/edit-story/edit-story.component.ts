@@ -1,5 +1,4 @@
 import { Subscription } from 'rxjs/Rx';
-import { NativeWindow } from '../window';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Post } from '../post';
@@ -17,15 +16,13 @@ export class EditStoryComponent implements OnInit {
   
   constructor(private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _postService: PostService,
-    @Inject(NativeWindow) private _window) { }
+    private _postService: PostService) { }
 
   ngOnInit() {
     this._activatedRoute
     .data
     .subscribe((data: { post: Post }) => {
       this.post = data.post;
-      this._window.scrollTo(0, 0);
     });
   }
 
